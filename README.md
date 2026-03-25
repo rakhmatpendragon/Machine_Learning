@@ -88,6 +88,10 @@ Remove columns like:
 
 Convert categorical features into numeric using Label Encoding.
 
+### ✔ Feature Scaling
+Apply Standard Scaling to normalize numeric features
+Ensures features have mean = 0 and standard deviation = 1
+
 ---
 
 ## 🎯 Final Output
@@ -95,8 +99,10 @@ Convert categorical features into numeric using Label Encoding.
 After preprocessing:
 
 * Clean dataset (no nulls, no duplicates)
+* Outliers handled
 * Only relevant features
 * All data in numeric format (ready for ML models)
+* Scaled features ready for ML models
 
 ---
 

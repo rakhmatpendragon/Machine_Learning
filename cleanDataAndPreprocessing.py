@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 # Set seed for reproducibility
 np.random.seed(42)
@@ -85,4 +85,33 @@ for col in df.select_dtypes(include="object").columns:
     df[col] = le.fit_transform(df[col])
 
 # Output check
+print(df.head())
+
+# 6. Handle Outliers (Drop Method using IQR)
+# Select numeric columns
+numeric_cols = df.select_dtypes(include=["int64", "float64"]).columns
+
+# Remove outliers using IQR
+for col in numeric_cols:
+    Q1 = df[col].quantile(0.25)
+    Q3 = df[col].quantile(0.75)
+    IQR = Q3-Q1
+
+    lower_bound = Q1 - 1.5 * IQR
+    upper_bound = Q3 + 1.5 * IQR
+
+    df = df[(df[col] >= lower_bound) & (df[col] <= upper_bound)]
+
+# Output check
+print("After removing outliers:")
+print(df.describe())
+
+# 7. Feature Scaling (StandardScaler)
+scaler = StandardScaler()
+
+# Apply scaling only to numeric columns
+df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
+
+# Output check
+print("After scaling:")
 print(df.head())
