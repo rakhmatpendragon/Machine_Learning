@@ -1,0 +1,14 @@
+cluster,description
+0,"Cluster 0  (282 customers, 30.6% of total)
+  LABEL  : Mixed / Moderate Profile
+  AVERAGE: age (46.9), tenure_months (58.8), annual_spend_usd (7453.4), num_purchases (40.0), avg_order_value (224.6), returns_count (5.0), last_purchase_days (181.2)"
+1,"Cluster 1  (193 customers, 20.9% of total)
+  LABEL  : Mixed / Moderate Profile
+  AVERAGE: age (45.2), tenure_months (61.0), annual_spend_usd (8004.8), num_purchases (44.7), avg_order_value (211.6), returns_count (4.9), last_purchase_days (194.0)"
+2,"Cluster 2  (213 customers, 23.1% of total)
+  LABEL  : High-Value Active Shoppers
+  HIGH   : annual_spend_usd (30332.5), num_purchases (80.1), avg_order_value (382.1)
+  AVERAGE: age (46.4), tenure_months (60.9), returns_count (4.5), last_purchase_days (182.3)"
+3,"Cluster 3  (235 customers, 25.5% of total)
+  LABEL  : Mixed / Moderate Profile
+  AVERAGE: age (46.1), tenure_months (62.6), annual_spend_usd (7750.1), num_purchases (40.1), avg_order_value (223.0), returns_count (4.5), last_purchase_days (192.7)"
