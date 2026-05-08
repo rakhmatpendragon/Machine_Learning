@@ -19,7 +19,7 @@ DATASET_FILENAME = "retail_customers.csv"
 DATASET_PATH     = DATA_DIR / DATASET_FILENAME
 
 # Number of rows shown by head()
-HEAD_ROWS = 10
+HEAD_ROWS = 15
 
 # ── Synthetic data generation (used when no real CSV is present) ──────────────
 SYNTHETIC_N_ROWS  = 1_000
