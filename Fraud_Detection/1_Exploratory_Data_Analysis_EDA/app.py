@@ -1,27 +1,16 @@
 import pandas as pd
+import sys
 
-from src.config import DATASET_PATH
+from src.data_loader import load_dataset
+from src.eda import run_full_eda
 from src.logger import get_logger
 
 logger = get_logger("utama")
 
-def main() -> None:
-    logger.info("START")
-    df = pd.read_csv(DATASET_PATH)
+def main() -> dict:
+    df = load_dataset()
 
-    print("Dataset Full Version")
-    print(df)
-
-    print("========== HEAD ==========")
-    print(df.head())
-
-    print("========== INFO ==========")
-    print(df.info())
-
-    print("========== DESCRIBE ==========")
-    print(df.describe())
-
-    logger.info("FINSIH")
+    result = run_full_eda(df)
 
 if __name__ == "__main__":
     main()
