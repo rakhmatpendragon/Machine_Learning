@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
-from src.utils import _banner
+from src.utils import banner
 from src.logger import get_logger
 from src.config import (
     COLUMNS_TO_DROP,
@@ -12,7 +12,7 @@ from src.config import (
 logger = get_logger(__name__)
 
 def audit_quality(df: pd.DataFrame) -> dict:
-    _banner("Step 1 — Data Quality Audit")
+    banner("Step 1 — Data Quality Audit")
 
     missing_per_column: pd.Series = df.isnull().sum()
     total_missing: int            = int(missing_per_column.sum())
@@ -31,7 +31,7 @@ def audit_quality(df: pd.DataFrame) -> dict:
     }
 
 def drop_missing(df: pd.DataFrame) -> pd.DataFrame:
-    _banner("Step 2 — Handle Missing Values  (dropna)")    
+    banner("Step 2 — Handle Missing Values  (dropna)")    
 
     before  = len(df)
     cleaned = df.dropna().reset_index(drop=True)
@@ -44,7 +44,7 @@ def drop_missing(df: pd.DataFrame) -> pd.DataFrame:
     return cleaned
 
 def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
-    _banner("Step 3 — Remove Duplicate Rows  (drop_duplicates)")
+    banner("Step 3 — Remove Duplicate Rows  (drop_duplicates)")
 
     before  = len(df)
     cleaned = df.drop_duplicates().reset_index(drop=True)
@@ -57,7 +57,7 @@ def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
     return cleaned
 
 def drop_columns(df: pd.DataFrame) -> pd.DataFrame:
-    _banner("Step 4 — Drop ID / Address / Date Columns")
+    banner("Step 4 — Drop ID / Address / Date Columns")
 
     present = [c for c in COLUMNS_TO_DROP if c in df.columns]
     absent  = [c for c in COLUMNS_TO_DROP if c not in df.columns]
@@ -73,7 +73,7 @@ def drop_columns(df: pd.DataFrame) -> pd.DataFrame:
     return cleaned
 
 def label_encode(df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, LabelEncoder]]:
-    _banner("Step 5 — Label Encode Categorical Features  (LabelEncoder)")
+    banner("Step 5 — Label Encode Categorical Features  (LabelEncoder)")
 
     encoded = df.copy()
     encoders: dict[str, LabelEncoder] = {}
@@ -106,7 +106,7 @@ def run_full_preprocessing(
         df: pd.DataFrame,
         persist: bool = True,
 ) -> dict:
-    _banner("Data Cleaning & Preprocessing Pipeline  —  START")
+    banner("Data Cleaning & Preprocessing Pipeline  —  START")
     shape_log: list[tuple[str, int, int]] = [("raw", *df.shape)]
 
     audit = audit_quality(df)
@@ -123,7 +123,7 @@ def run_full_preprocessing(
     df_encoded, encoders = label_encode(df_step)
     shape_log.append(("after encoding", *df_encoded.shape))
 
-    _banner("Preprocessing Summary")
+    banner("Preprocessing Summary")
     logger.info("%-30s %6s %6s", "Stage", "Rows", "Cols")
     logger.info("-" * 46)
     for stage, rows, cols in shape_log:
@@ -135,7 +135,7 @@ def run_full_preprocessing(
         logger.info("")
         logger.info("Processed dataset saved → %s", PROCESSED_DATASET_PATH)
 
-    _banner("Preprocessing Pipeline  — COMPLETE")
+    banner("Preprocessing Pipeline  — COMPLETE")
 
     return {
         "audit":        audit,
