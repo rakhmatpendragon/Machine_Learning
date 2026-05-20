@@ -54,3 +54,24 @@ MODEL_CLUSTERING_PATH  = MODELS_DIR / "model_clustering.pkl"
 CLUSTER_PLOT_2D  = OUTPUT_DIR / "cluster_scatter_2d.png"
 CLUSTER_PLOT_BAR = OUTPUT_DIR / "cluster_profiles.png"
 ELBOW_PLOT_PATH  = OUTPUT_DIR / "elbow_method.png"
+
+INTERPRETATION_AGG_FUNCS = ["mean", "min", "max", "std", "median"]
+
+NUMERIC_FEATURES_FOR_ANALYSIS = [
+    "TransactionAmount",
+    "TransactionType",
+    "Channel",
+    "CustomerAge",
+    "CustomerOccupation",
+    "TransactionDuration",
+    "LoginAttempts",
+    "AccountBalance",
+]
+
+TARGET_COLUMN_NAME = "Target"
+
+INTERPRETATION_STATS_CSV   = OUTPUT_DIR / "09_cluster_descriptive_stats.csv"
+INTERPRETATION_PROFILE_CSV = OUTPUT_DIR / "10_cluster_profiles_full.csv"
+INTERPRETATION_HEATMAP_PNG = OUTPUT_DIR / "11_cluster_heatmap.png"
+INTERPRETATION_RADAR_PNG   = OUTPUT_DIR / "12_cluster_radar.png"
+LABELED_DATASET_PATH       = DATA_DIR / "retail_customers_labeled.csv"
