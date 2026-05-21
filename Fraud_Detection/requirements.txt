@@ -1,0 +1,26 @@
+```text
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+yellowbrick
+joblib
+jupyter
+Contoh Isi .gitignore
+__pycache__/
+.ipynb_checkpoints/
+
+*.pyc
+*.pyo
+
+.env
+venv/
+.venv/
+
+data/raw/*
+!data/raw/.gitkeep
+
+models/**/*.h5
+
+.DS_Store
