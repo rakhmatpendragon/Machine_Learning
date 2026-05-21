@@ -33,8 +33,8 @@ def main() -> dict:
     logger.info("Clean dataset      : %d rows x %d colums", *df_clean.shape)
     logger.info("Clusters found     : %d", cluster_results["optimal_k"])
     logger.info("Model saved        : model/model_clustering.pkl")
-    # logger.info("Labeled export     : data/retail_customers_labeled.csv  (%d rows x %d cols)",
-    #             *labeled_df.shape)
+    logger.info("Labeled export     : data/retail_customers_labeled.csv  (%d rows x %d cols)",
+                *labeled_df.shape)
     logger.info("Interpretation     : outputs/09… 12_*.{csv, png}")
 
     return {
